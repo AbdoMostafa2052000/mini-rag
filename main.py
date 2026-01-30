@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from routes import base ## my .py file
 from dotenv import load_dotenv ## loads .env to my os
 
-load_dotenv(".env")
+load_dotenv(".env") # This line is responsble to load my .env to the os sys
 app = FastAPI()
 app.include_router(base.base_router)
 
