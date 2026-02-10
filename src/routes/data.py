@@ -23,7 +23,7 @@ async def upload_data(project_id: str, file: UploadFile , app_settings: Settings
     #project_dir_path=ProjectController().get_project_path(project_id = project_id)
 
     #file_path=os.path.join(project_dir_path,file.filename)
-    file_path = DataController().generate_unique_filepath(org_filename=file.filename,
+    file_path, project_id = DataController().generate_unique_filepath(org_filename=file.filename,
                                                           project_id=project_id)
 
     try:
@@ -36,8 +36,9 @@ async def upload_data(project_id: str, file: UploadFile , app_settings: Settings
 
     except Exception as e:
         logger.error(f"Error while uploading file: {e}")
-        return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"signal": ResponseSignal.FILE_UPLOAD_FAILED.value})
+        return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"signal": ResponseSignal.FILE_UPLOAD_FAILED.value,"project_id": project_id})
     
     return JSONResponse(
-        content={"Signal": ResponseSignal.FILE_UPLOAD_SUCCESS.value}
+        content={"Signal": ResponseSignal.FILE_UPLOAD_SUCCESS.value ,
+                  "project_id": project_id}
     )
