@@ -1,8 +1,22 @@
+
 fastapi==0.128.0
 uvicorn[standard]==0.29.0
 python-multipart==0.0.9
 python-dotenv==1.2.1
-pydantic-settings==2.12.0 
-aiofiles == 25.1.0
+pydantic-settings==2.12.0
+aiofiles==25.1.0
+
+langchain==1.2.10
+langchain-community
+langchain-openai
+langchain-text-splitters
+
+PyMuPDF
+
 #is used to load and validate application configuration (like environment variables) 
 #into typed Python classes using Pydantic, making settings safe, structured, and easy to manage.
+
+
+
+
+

@@ -29,14 +29,14 @@ class DataController(BaseController):
         # prefer the original name if it's available
         new_filepath = os.path.join(project_path, filename)
         if not os.path.exists(new_filepath):
-            return new_filepath,project_id
+            return new_filepath,filename
 
         # on collision, fallback to a UUID-prefixed filename until available
         while True:
             random_key = uuid.uuid4().hex
             new_filepath = os.path.join(project_path, f"{random_key}_{filename}")
             if not os.path.exists(new_filepath):
-                return new_filepath,project_id
+                return new_filepath, random_key + "_" + filename
 
     def get_clean_file_name(self, orig_file_name: str):
 
